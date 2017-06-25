@@ -1,3 +1,3 @@
 # prog
 
-Common repository for all programming
+Common repository for all programming stuff
