@@ -1,0 +1,14 @@
+def findMaxOfUnimodal(A):
+    lowerBound=0
+    upperBound=len(A)
+
+    while lowerBound<=upperBound:
+        index=(upperBound-lowerBound)/2
+        if (A[index-1]<A[index] and A[index]<A[index+1]):
+            lowerBound=index
+        elif (A[index-1]>A[index] and A[index]>A[index+1]):
+            upperBound=index
+        else:
+            return (index, A[index])
+              
+    

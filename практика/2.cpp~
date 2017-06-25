@@ -1,0 +1,80 @@
+#include <iostream>
+using namespace std;
+
+template <class T> class stack
+{
+private:
+  struct element
+  {
+    T value;
+    element* next;
+  };
+  element* top;
+  void Remove(element* link)
+  {
+    if (!link)
+      return;
+    Remove(link->next);
+    delete link;
+  }
+  /*void PrintElement(element *link)
+  {
+    if (!link)
+      return;
+    PrintElement(link->next);
+    T x = this->pop();
+    cout
+    }*/
+public:
+  stack()
+  {
+    top = new element();
+    top->next = nullptr;
+  }
+  ~stack() {
+    if (this->isEmpty());
+    else
+      Remove(top);
+  }
+  void push(T val)
+  {
+    element* x = new element();
+    x->value = val;
+    x->next = top;
+    top = x;
+
+  }
+  T pop()
+  {
+    if (!isEmpty()) {
+      T val = top->value;
+      this->top = top->next;
+      element* t1 = top;
+      delete t1;
+      return val;
+    }
+    else
+      cout << "Error: stack is empty." << endl;
+  }
+  bool isEmpty()
+  {
+    return (top == nullptr);
+  }
+  void print()
+  {
+    element* x = top;
+    while (x) {
+      cout << x->value << endl;
+      x = x->next;
+    }
+  }
+};
+  
+int main() {
+  stack<int> s;
+  s.push(1); s.push(2); s.push(3);
+  int x = s.pop();
+  s.push(1); s.push(2); s.push(3);
+  //s.print();
+  return 0;
+}

@@ -1,0 +1,2 @@
+def test():
+    while True: exit

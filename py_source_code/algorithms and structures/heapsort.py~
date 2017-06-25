@@ -1,0 +1,33 @@
+def heapsort(a):
+    length= len(a)
+    heapsize=length
+    build_max_heap(a,heapsize)
+    for i in range(length - 1, 0, -1):
+        swap(a,i,0)
+        heapsize = heapsize - 1
+        max_heapify(a,0,heapsize)
+
+def build_max_heap(a,heapsize):
+    start = len(a) // 2 - 1
+    for i in range(start, -1, -1):
+        max_heapify(a,i,heapsize)
+    
+def max_heapify(a,i,heapsize):
+    if (i < heapsize//2):
+        largest=i
+        left=2 * i + 1
+        right=2 * (i + 1)
+        if (a[left]>a[largest]):
+            largest=left
+        if (a[right]>a[largest]):
+            largest=right
+        if (largest != i):
+            swap(a,largest,i);
+            max_heapify(a,largest,heapsize)
+
+#helper swap function for list
+def swap(aList,i1,i2):
+    t=aList[i1]
+    aList[i1]=aList[i2];
+    aList[i2]=t
+    

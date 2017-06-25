@@ -1,0 +1,32 @@
+(define (con-frac n d k)
+  (define (iter i res)
+    (if (= i 0)
+	res
+	(iter (- i 1) (/ (n i) (+ (d i) res)))))
+  (iter k 0.0))
+
+;1.38
+(define e
+  (+ 2
+     (con-frac (lambda (i) 1.0)
+	       (lambda (i) 
+		 (if (= (remainder i 3) 2)
+		     (* (/ 2 3) (+ i 1))
+		     1.0))
+	       1000)))
+
+e
+;1.39
+(define (tan-cf x k)
+  (con-frac (lambda (i) 
+	      (if (= i 1)
+		  x
+		  (- (square x))))
+	    (lambda (i)
+	      (- (* 2 i) 1))
+	    k))
+
+(tan-cf (/ 3.14159265359 4) 100)
+	      
+		  
+

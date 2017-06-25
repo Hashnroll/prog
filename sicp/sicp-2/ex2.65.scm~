@@ -1,0 +1,3 @@
+
+(define x (make-tree 25 (make-tree 15 (make-tree 10 '() '()) (make-tree 20 '() '()) ) (make-tree 55 (make-tree 45 '() '()) (make-tree 55 () ()))))
+

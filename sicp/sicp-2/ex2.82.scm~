@@ -1,0 +1,15 @@
+(define (apply-generic op . args)
+  (let ((type-tags (map type-tag args)))
+    (let ((proc (get op type-tags)))
+      (if proc
+	  (apply proc (map contents args))
+	  (let* ((cur-type (car type-tags))
+		 (coerced-args (coerce type (cdr args))))
+	    (if coerced-args
+		(apply-generic op coerced-args)
+		(apply-generic op (append (cdr args)
+					  (list (car args))))
+		(else
+	       (error "No method for these types"
+		      (list op type-tags))))))))))
+

@@ -1,0 +1,22 @@
+def _qsort(a, l, r):
+    if l >= r:
+        return
+    mid = (l + r)/2
+    x = a[mid]
+    i, j = l, r
+    while i < j:
+        while a[i] < x:
+            i += 1
+        while a[j] > x:
+            j -= 1
+        if i < j:
+            a[i], a[j] = a[j], a[i]
+            if j == mid:i == mid:
+ 
+    _qsort(a, l, mid - 1)
+    _qsort(a, mid + 1, r)
+
+def qsort(a):
+    _qsort(a, 0, len(a) - 1)
+
+        

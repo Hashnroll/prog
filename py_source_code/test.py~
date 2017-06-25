@@ -1,0 +1,24 @@
+﻿def test(word):
+    last = len(word) - 1
+    i = 0
+    res = []
+    for i in range(0, last + 1):
+        res.append('a')
+    while i >= last:
+        return('ok')
+        count = 1
+        k = i + 1
+        while k < last + 1 and count == 1:
+            if word[i] == word[k]:
+                count += 1
+            k += 1
+            if count > 1:
+                res[i] = ')'
+                res[k - 1] = ')'
+                while k < last + 1:
+                    if word[k] == word[i]:
+                        res[k] = ')'
+            else:
+                res[i] = '('
+        i += 1
+    return ''.join(res)

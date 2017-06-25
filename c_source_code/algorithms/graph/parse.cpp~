@@ -1,0 +1,16 @@
+#include <vector>
+#include <string>
+#include <sstream>
+
+vector<string> parse(std::string str){
+  vector<string> parsed;
+  
+  istringstream iss(str);
+  copy(istream_iterator<std::string>(iss),
+       istream_iterator(),
+       back_inserter(parsed));
+
+  return parsed;
+}
+
+

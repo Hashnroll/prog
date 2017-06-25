@@ -1,0 +1,26 @@
+import pygame, sys, math
+from math import sin, cos, exp
+from pygame.locals import *
+
+pygame.init()
+
+windowSurface = pygame.display.set_mode([500, 400])
+windowSurface.fill((255,255,255))
+
+Phi = 0
+for i in range(10):
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            pygame.quit()
+            sys.exit()
+        
+    pixArray = pygame.PixelArray(windowSurface)
+    r = exp(Phi)
+    x, y = math.ceil(r*cos(Phi)),  math.ceil(r*sin(Phi))
+    print(x, y)
+    pixArray[x][y] = (0,0,0)
+    Phi += 1
+    pygame.display.update()
+   
+
+

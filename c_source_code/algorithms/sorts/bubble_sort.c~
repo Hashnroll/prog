@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+const n = 100;
+
+void swap(int *a, int *b) {
+  int temp;
+  temp=*a;
+  *a=*b;
+  *b=temp;
+}
+	  
+int main() {
+  int array[n];
+  //initialization of array
+  for (int i=0; i<n; ++i)
+    array[i]=rand(100)+1;
+  //sorting of array
+  for (int i=1; i<=n-1; ++i)
+    for (int j=n; j>=1; --j)
+      if (array[j-1]>array[j])
+	swap(&array[j-1],&array[j]);
+  //printing of array
+  for (int i=0; i<n; ++i)
+    printf("%d ", array[i]);
+  return 0;
+}

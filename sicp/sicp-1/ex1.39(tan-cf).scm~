@@ -1,0 +1,10 @@
+(define (tan-cf x k)
+  (con-frac (lambda (
+)
+  
+
+(define (con-frac n d k)
+  (define (iter i res)
+    (if (= i 0)
+	res
+	(iter (- i 1) (/

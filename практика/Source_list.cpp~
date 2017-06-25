@@ -1,0 +1,95 @@
+#include <iostream>
+using namespace std;
+
+template <class T> class double_list
+{
+private:
+  struct node
+  {
+    T value;
+    node* next;
+    node* prev;
+  };
+  node* first;
+  node* last;
+  void Remove(node* link)
+  {
+    if (!link)
+      return;
+    Remove(link->next);
+    delete link;
+  }
+public:
+  double_list() {
+    first = last = nullptr;
+  }
+  ~double_list() {
+    if (this->isEmpty());
+    else
+      Remove(first);
+  }
+  void InsertBegin(T val)
+  {
+    node* x = new node();
+    x->value = val;
+    x->prev = nullptr;
+    x->next = first;
+    first = x;
+    if (isEmpty())
+      last = x;
+  }
+  void InsertEnd(T val)
+  {
+    cout << "1" << endl;
+    node* x = new node();
+    cout << "2" << endl;
+    x->value = val;
+    x->next = nullptr;
+    x->prev = last;
+    last->next = x;
+    last = x;
+    if (isEmpty())
+      first = x;
+  }
+  void RemoveBegin()
+  {
+    if (isEmpty()) {
+      cout << "Error: list is empty." << endl;
+      return;
+    }
+    node *x = first;
+    first = first->next;
+    first->prev = nullptr;
+    delete x;
+  }
+  void RemoveEnd()
+  {
+    if (isEmpty()) {
+      cout << "Error: list is empty." << endl;
+      return;
+    }
+    node *x = last;
+    last = last->prev;
+    last->next = nullptr;
+    delete x;
+  }
+  bool isEmpty()
+  {
+    return (first == nullptr);
+  }
+  void Print() {
+    node* x = first;
+    while (x != nullptr) {
+      cout << x->value << endl;
+      x = x->next;
+    }
+  }
+};
+
+int main() {
+  double_list<int> l1;
+  //l1.InsertBegin(1);
+  l1.InsertEnd(2);
+  l1.Print();
+  return 0;
+}

@@ -1,0 +1,36 @@
+(define (equ? x y) (apply-generic 'equ? x y))
+
+;scheme-number
+(put 'equ? '(scheme-number scheme-number) =)
+
+;rational
+(define (equ? x y)
+  (= (* (numer x) (denom y)) (* (denom x) (numer y))))
+(put 'equ? '(rational rational) equ?)
+
+;complex
+(define (equ? x y)
+  (and (= (real-part x) (real-part y))
+       (= (imag-part x) (imag-part y))))
+(put 'equ? '(complex complex) equ?)
+
+(define (equ? x y) (apply-generic 'equ? x y))
+
+;ex2.80
+(define (=zero? x) (apply-generic '=zero? x))
+
+;scheme-number
+(define (=zero? x)
+  (= x 0))
+(put '=zero? 'scheme-number =zero?)
+
+;rational
+(define (=zero ? x)
+  (= (numer x) 0))
+(put '=zero? 'rational =zero?)
+ 
+;complex
+(define (=zero ? x)
+  (and (= (real-part x) 0)
+       (= (imag-part x) 0)))
+(put '=zero? 'complex =zero?)
